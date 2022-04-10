@@ -1,0 +1,16 @@
+syntax = "proto3";
+package worker;
+
+option go_package = "github.com/AlexanderNovichkov/wikipedia-pathfinding/pkg/proto/worker";
+
+message FindPathRequestMessage {
+  string start_page_url = 1;
+  string finish_page_url = 2;
+  string result_id = 3;
+}
+
+message FindPathResultMessage {
+  bool path_found = 1;
+  repeated string path = 2;
+  string result_id = 3;
+}

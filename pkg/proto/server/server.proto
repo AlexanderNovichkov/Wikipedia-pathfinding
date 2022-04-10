@@ -1,0 +1,26 @@
+syntax = "proto3";
+package server;
+
+option go_package = "github.com/AlexanderNovichkov/wikipedia-pathfinding/pkg/proto/server";
+
+service WikipediaPathfinding {
+  // Put request into queue. You can get result by calling GetResult with returned ID.
+  rpc QueueFindPath (FindPathRequest) returns (FindPathResultId);
+
+  // If request is not completed yet then return gRPC status NOT FOUND
+  rpc GetResult(FindPathResultId) returns (FindPathResult);
+}
+
+message FindPathRequest {
+  string start_page_url = 1;
+  string finish_page_url = 2;
+}
+
+message FindPathResultId {
+  string result_id = 1;
+}
+
+message FindPathResult {
+  bool path_found = 1;
+  repeated string path = 2;
+}
