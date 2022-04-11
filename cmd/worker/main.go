@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	requestsQueueAddr    = flag.String("requestsQueueAddr", "amqp://guest:guest@localhost:5672/", "requests queue address")
+	requestsQueueUrl     = flag.String("requestsQueueUrl", "amqp://guest:guest@localhost:5672/", "requests queue url")
 	resultsStorageDBAddr = flag.String("resultsStorageAddr", "localhost:6379", "results storage address")
 )
 
@@ -70,7 +70,9 @@ func handleMessage(msg amqp.Delivery, resultStorage *redis.Client) {
 }
 
 func main() {
-	conn, err := amqp.Dial(*requestsQueueAddr)
+	flag.Parse()
+
+	conn, err := common.ConnectToRabbitMQ(*requestsQueueUrl)
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 

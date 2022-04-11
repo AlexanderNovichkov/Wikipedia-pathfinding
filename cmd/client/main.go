@@ -71,7 +71,6 @@ func printResult(result *server.FindPathResult) {
 func main() {
 	flag.Parse()
 
-	fmt.Println("Connecting to", *addr)
 	conn, err := grpc.Dial(*addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
