@@ -3,6 +3,8 @@
 Finds the shortest path between two Wikipedia
 pages ([six degrees of Wikipedia](https://en.wikipedia.org/wiki/Wikipedia:Six_degrees_of_Wikipedia)).
 
+![](img/wikipedia-pathfinding.jpg)
+
 # Run server-side components
 
 ```
